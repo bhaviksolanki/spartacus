@@ -1,16 +1,10 @@
-<!--<p>custom-variant-selector works!</p>
-<ng-container *ngIf="product$ | async as product">
-<h5>Select Variants</h5>
-Access `data` here, for example:
-  <pre>{{ product | json }}</pre>
-  <div *ngFor="let variant of product.variantMatrix">
-
-  </div>
-
-
-</ng-container>-->
+<!--
+ Customizing PDP page - Product Variant Selector section
+ @author : Bhavik Solanki
+ -->
 
 <ng-container *ngIf="variantStyles && variantSizes && currentStyleUrl">
+    <!-- Display Color variants in boxes-->
     <div class="variant-section">
       <ng-container *ngIf="variantStyles">
         <div class="variant-selector">
@@ -36,21 +30,13 @@ Access `data` here, for example:
       
           <!-- Variant Sizes displayed as boxes -->
           <ng-container *ngIf="variantSizes">
-           
             <div class="variant-selector">
               <div class="variant-name">
                 <span class="variant-selected sizeName">{{ currentSizeHtml }}</span>
               </div>
-          
-              <!-- Variant Sizes displayed as boxes -->
               <div class="variant-sizes-container">
-                <div 
-                  class="variant-size-box" 
-                  *ngFor="let variantSize of variantSizes" 
-                  [class.selected]="variantSize.url === currentStyleUrl" 
-                  [class.disabled]="!isSizeAvailable(variantSize)"
-                  (click)="selectVariantSize(variantSize)"
-                >
+                <div class="variant-size-box" *ngFor="let variantSize of variantSizes" [class.selected]="variantSize.url === currentStyleUrl" 
+                  [class.disabled]="!isSizeAvailable(variantSize)" (click)="selectVariantSize(variantSize)" >
                   <div class="size-label">
                     <ng-container *ngFor="let qualifier of variantSize.variantOptionQualifiers">
                       <ng-container *ngIf="qualifier.qualifier === 'size'">

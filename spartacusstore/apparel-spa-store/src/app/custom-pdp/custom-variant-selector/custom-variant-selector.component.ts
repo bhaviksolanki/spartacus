@@ -3,6 +3,11 @@ import { Product } from '@spartacus/core';
 import { CurrentProductService } from '@spartacus/storefront';
 import { Observable } from 'rxjs';
 
+/**
+ * Customizing PDP page - Product Variant Selector section
+ * @author : Bhavik Solanki
+ */
+
 @Component({
   selector: 'app-custom-variant-selector',
   templateUrl: './custom-variant-selector.component.html',
