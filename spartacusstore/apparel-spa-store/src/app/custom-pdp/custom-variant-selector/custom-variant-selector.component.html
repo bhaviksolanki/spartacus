@@ -1,0 +1,82 @@
+<!--<p>custom-variant-selector works!</p>
+<ng-container *ngIf="product$ | async as product">
+<h5>Select Variants</h5>
+Access `data` here, for example:
+  <pre>{{ product | json }}</pre>
+  <div *ngFor="let variant of product.variantMatrix">
+
+  </div>
+
+
+</ng-container>-->
+
+<ng-container *ngIf="variantStyles && variantSizes && currentStyleUrl">
+    <div class="variant-section">
+      <ng-container *ngIf="variantStyles">
+        <div class="variant-selector">
+          <div class="variant-name">
+            Colour<span class="variant-selected styleName"></span>
+          </div>
+          <div class="variant-list-boxes">
+            <div *ngFor="let variantStyle of variantStyles" class="variant-box" [class.active]="variantStyle.url === currentStyleUrl">
+              <ng-container *ngFor="let qualifier of variantStyle.variantOptionQualifiers">
+                <ng-container *ngIf="qualifier.qualifier === 'style'">
+                  <div id="currentStyleValue" *ngIf="variantStyle.url === currentStyleUrl" [attr.data-style-value]="qualifier.value"></div>
+                  <a [href]="variantStyle.url" class="colorVariant" [name]="variantStyle.url">
+                    <img *ngIf="qualifier.image" [src]="qualifier.image.url" [title]="qualifier.value" [alt]="qualifier.value" class="variant-thumbnail"/>
+                    <span *ngIf="!qualifier.image" class="swatch_colour_a" [title]="qualifier.value"></span>
+                  </a>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      
+      
+          <!-- Variant Sizes displayed as boxes -->
+          <ng-container *ngIf="variantSizes">
+           
+            <div class="variant-selector">
+              <div class="variant-name">
+                <span class="variant-selected sizeName">{{ currentSizeHtml }}</span>
+              </div>
+          
+              <!-- Variant Sizes displayed as boxes -->
+              <div class="variant-sizes-container">
+                <div 
+                  class="variant-size-box" 
+                  *ngFor="let variantSize of variantSizes" 
+                  [class.selected]="variantSize.url === currentStyleUrl" 
+                  [class.disabled]="!isSizeAvailable(variantSize)"
+                  (click)="selectVariantSize(variantSize)"
+                >
+                  <div class="size-label">
+                    <ng-container *ngFor="let qualifier of variantSize.variantOptionQualifiers">
+                      <ng-container *ngIf="qualifier.qualifier === 'size'">
+                        {{ qualifier.value }}
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  
+                  <div class="stock-status">
+                    <span *ngIf="variantSize.stock?.stockLevel > 0 && variantSize.stock?.stockLevelStatus !== 'outOfStock'">
+                      In Stock ({{ variantSize.stock.stockLevel }})
+                    </span>
+                    <span *ngIf="variantSize.stock?.stockLevel <= 0 && variantSize.stock?.stockLevelStatus === 'inStock'">
+                      Available
+                    </span>
+                    <span *ngIf="variantSize.stock?.stockLevel <= 0 && variantSize.stock?.stockLevelStatus !== 'inStock'">
+                      Out of Stock
+                    </span>
+                  </div>
+                </div>
+              </div>
+          
+              <div id="currentSizeValue" [attr.data-size-value]="currentSizeHtml"></div>
+              <a href="#" class="size-guide" title="Size Guide">&nbsp;</a>
+            </div>
+          </ng-container>
+    </div>
+  </ng-container>
+  
