@@ -12,7 +12,8 @@
                 		
         
         <requires-extension name="acceleratorcms"/>
-                		
+        
+        <requires-extension name="stocknotificationservices"/>      		
         
         <coremodule generated="true" manager="com.training.core.jalo.TrainingCoreManager" packageroot="com.training.core"/>
                 		

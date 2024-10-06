@@ -538,4 +538,10 @@
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
+	
+	<!-- CustomStockLevelStatusNotificationJob  -->
+	<bean id="customStockLevelStatusNotificationJob" class="com.training.core.cronjob.CustomStockLevelStatusNotificationJob"
+		parent="abstractStockLevelStatusJob">
+	</bean>
+	
 </beans>

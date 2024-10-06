@@ -1,0 +1,10 @@
+#### Import the impex to get the Custom Stock Notification Cronjob ######
+
+INSERT_UPDATE ServicelayerJob;code[unique=true];springId
+;customStockLevelStatusNotificationJob;customStockLevelStatusNotificationJob
+
+INSERT_UPDATE CronJob;code[unique=true];job(code);singleExecutable;sessionLanguage(isocode)
+;customStockLevelStatusCronJob;customStockLevelStatusNotificationJob;false;en
+
+INSERT_UPDATE Trigger;cronjob(code)[unique=true];cronExpression
+;customStockLevelStatusCronJob; 0 0 0 * * ?
